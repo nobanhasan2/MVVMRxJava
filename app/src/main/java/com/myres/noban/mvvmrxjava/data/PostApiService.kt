@@ -4,8 +4,9 @@ import com.myres.noban.mvvmrxjava.model.Posts
 import io.reactivex.Flowable
 import retrofit2.http.GET
 
-interface ApiService {
+interface PostApiService {
 
     @GET("/posts")
-    fun getPosts(): Flowable<List<Posts>>
+    fun getAllPost(): Flowable<List<Posts>>
+
 }
