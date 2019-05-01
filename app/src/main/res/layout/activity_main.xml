@@ -7,9 +7,7 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.myres.noban.mvvmrxjava.viewModel.MainViewModel"/>
-
-        <variable name="viewModel" type="MainViewModel"/>
+        <variable name="viewModel" type="com.myres.noban.mvvmrxjava.viewModel.MainViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +35,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             android:background="@android:color/holo_purple"
-
+            android:onClick="@{() -> viewModel.loadRepositories()}"
             android:text="Load Post"
             android:textColor="@android:color/background_light"
             android:textSize="20sp"
