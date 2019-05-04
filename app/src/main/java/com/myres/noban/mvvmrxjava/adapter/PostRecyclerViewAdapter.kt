@@ -21,4 +21,9 @@ class PostRecyclerViewAdapter() : RecyclerView.Adapter<PostRecyclerViewHolder>()
     override fun onBindViewHolder(holder: PostRecyclerViewHolder, position: Int) {
         holder.bind(posts?.get(position)!!)
     }
+
+    fun replaceData(posts: ArrayList<Posts>) {
+        this.posts = posts
+        notifyDataSetChanged()
+    }
 }

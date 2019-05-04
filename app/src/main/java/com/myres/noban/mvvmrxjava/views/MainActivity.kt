@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModel.posts.observe(this, Observer<List<Posts>> {
-            it?.let {
-                repositoryRecyclerViewAdapter.notifyDataSetChanged()
+            it?.let { it ->
+                repositoryRecyclerViewAdapter.replaceData(it as ArrayList<Posts>)
             }
         })
 
