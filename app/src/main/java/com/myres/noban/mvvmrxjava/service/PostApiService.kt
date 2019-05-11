@@ -1,4 +1,4 @@
-package com.myres.noban.mvvmrxjava.data
+package com.myres.noban.mvvmrxjava.service
 
 import com.myres.noban.mvvmrxjava.model.Posts
 import io.reactivex.Flowable

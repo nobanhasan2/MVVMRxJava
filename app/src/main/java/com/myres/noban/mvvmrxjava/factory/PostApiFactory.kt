@@ -1,9 +1,11 @@
-package com.myres.noban.mvvmrxjava.data
+package com.myres.noban.mvvmrxjava.factory
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.myres.noban.mvvmrxjava.utils.Constant.BASE_URL
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+import com.myres.noban.mvvmrxjava.utils.Constant.BASE_URL
 
 object PostApiFactory {
 
@@ -20,7 +22,7 @@ object PostApiFactory {
         return retrofit
     }
 
-    fun getPostApiService(): PostApiService? {
-        return getRetrofit()?.create(PostApiService::class.java)
+    fun <T> getPostApiService(serviceType: Class<T>): T? {
+        return getRetrofit()?.create(serviceType)
     }
 }

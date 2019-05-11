@@ -1,4 +1,4 @@
-package com.myres.noban.mvvmrxjava.adapter
+package com.myres.noban.mvvmrxjava.adapter.viewHolder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.myres.noban.mvvmrxjava.databinding.ItemPostsBinding

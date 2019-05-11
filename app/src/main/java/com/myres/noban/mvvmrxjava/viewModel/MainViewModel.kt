@@ -24,28 +24,23 @@ class MainViewModel(
     var posts = MutableLiveData<List<Posts>>()
 
     fun loadRepositories() {
-       // isLoading.set(true)
+        isLoading.set(true)
 
-        val disposable: Disposable? = postRepository.getRepositories()
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())
-                ?.subscribe(this::onSuccess, this::onError)
-
-        if (disposable != null) {
-            compositeDisposable.add(disposable)
-        }
-
+        postRepository.getRepositories()
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe(this::onSuccess, this::onError)
+            ?.let { compositeDisposable.add(it) }
     }
 
-    private fun onSuccess(posts: List<Posts>?){
-        if (posts != null) {
-            Log.e("Success", posts.size.toString()+" Data loaded")
-        }
+    private fun onSuccess(posts: List<Posts>?) {
+        isLoading.set(false)
         this.posts.value= posts
     }
 
     private fun onError(throwable: Throwable) {
-        Log.e("Success",":Error")
+        isLoading.set(false)
+        Log.e("Success",""+ throwable.message)
     }
 
     override fun onCleared() {
