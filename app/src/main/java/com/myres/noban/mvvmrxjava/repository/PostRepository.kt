@@ -10,13 +10,14 @@ class PostRepository(context: Context) {
 
     private val netManager = NetManager(context)
     private val remoteData = GetPostFromRemoteServer()
+    private val context = context
 
     fun getRepositories(): Flowable<List<Posts>>? {
         var posts : Flowable<List<Posts>>? = null
 
         netManager.isConnectedToInternet?.let { isConnectedToInternet ->
             if (isConnectedToInternet) {
-                posts = remoteData.getPosts()!!
+                posts = remoteData.getPosts(context)!!
             } else {
                 // ... Retrieve post from Room or cache
             }
