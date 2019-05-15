@@ -24,7 +24,7 @@ class MainViewModel(
     var posts = MutableLiveData<List<Posts>>()
 
     fun loadRepositories() {
-        isLoading.set(true)
+        isLoading.set(false)
 
         postRepository.getRepositories()
             ?.subscribeOn(Schedulers.io())

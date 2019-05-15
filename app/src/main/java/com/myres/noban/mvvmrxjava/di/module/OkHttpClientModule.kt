@@ -2,6 +2,12 @@ package com.myres.noban.mvvmrxjava.di.module
 
 import android.content.Context
 import android.util.Log
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.myres.noban.mvvmrxjava.App
+import com.myres.noban.mvvmrxjava.factory.OfflineResponseCacheInterceptor
+import com.myres.noban.mvvmrxjava.factory.ResponseCacheInterceptor
 
 import java.io.File
 
@@ -14,6 +20,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
 import com.myres.noban.mvvmrxjava.utils.Constant.APPLICATION_SCOPE
+import java.net.CookieManager
+import java.net.CookiePolicy
+import java.util.concurrent.TimeUnit
 
 @Module(
     includes = [
@@ -22,13 +31,31 @@ import com.myres.noban.mvvmrxjava.utils.Constant.APPLICATION_SCOPE
 )
 class OkHttpClientModule {
 
+
     @Provides
     fun provideOkHttpClient(cache: Cache, loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient()
-            .newBuilder()
-            .cache(cache)
-            .addInterceptor(loggingInterceptor)
-            .build()
+         var okHttpClient: OkHttpClient? =null
+        if (okHttpClient == null) {
+            val okHttpClientBuilder = OkHttpClient.Builder()
+            okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
+            okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
+            okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
+
+            okHttpClientBuilder.cache(cache)
+            val cookieManager = CookieManager()
+            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
+            okHttpClientBuilder.cookieJar(PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(App.getApp().applicationContext)))
+
+            okHttpClientBuilder.addNetworkInterceptor(ResponseCacheInterceptor())
+            okHttpClientBuilder.addInterceptor(OfflineResponseCacheInterceptor())
+
+            okHttpClientBuilder.addInterceptor { chain -> chain.proceed(chain.request().newBuilder().build()) }
+            okHttpClientBuilder.addInterceptor(loggingInterceptor)
+
+            okHttpClient = okHttpClientBuilder.build()
+        }
+
+        return okHttpClient!!
     }
 
     @Provides

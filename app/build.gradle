@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -35,6 +36,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    //okhttp client
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    // okhttp3 cookie jar https://github.com/franmontiel/PersistentCookieJar
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    // https://github.com/ihsanbal/LoggingInterceptor
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        exclude group: 'org.json', module: 'json'
+    }
     // ... AndroidX View
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

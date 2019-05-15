@@ -13,6 +13,7 @@ class PostRepository(private val context: Context) {
     private val netManager = NetManager(context)
     private val remoteData = GetPostFromRemoteServer()
 
+
     fun getRepositories(): Flowable<List<Posts>>? {
         var posts : Flowable<List<Posts>>? = null
 
