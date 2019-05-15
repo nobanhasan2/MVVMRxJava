@@ -15,33 +15,64 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{String.valueOf(post.id)}"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="1"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{post.title}"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{post.title}"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.29000002"
-            tools:text="Title"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_id"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="Android Architecture Component"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:text="@{post.body}"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintStart_toStartOf="@+id/title"
+            android:textColor="@color/colorBody"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Body"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_id"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Android architecture components are a collection of libraries that help you design robust, testable, and maintainable apps"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

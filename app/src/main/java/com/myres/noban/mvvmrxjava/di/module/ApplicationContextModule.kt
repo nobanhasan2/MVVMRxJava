@@ -13,7 +13,8 @@ import javax.inject.Named
 class ApplicationContextModule(private val context: Context) {
 
     @Named(APPLICATION_SCOPE)
-    @Provides fun context(): Context {
+    @Provides
+    fun context(): Context {
         return context.applicationContext
     }
 
